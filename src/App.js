@@ -9,6 +9,7 @@ import Services from './pages/Services';
 import Notice from './pages/Notice';
 import Events from './pages/Events';
 import Gallery from './pages/Gallery';
+import Footer from './components/footer/Footer';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <div className="body">               
           <Outlet />
         </div>
+          <Footer />
       </Container>
     );
   }
