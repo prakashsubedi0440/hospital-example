@@ -1,26 +1,82 @@
+import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { 
+    CURRENT_YEAR, 
+    HOSPITAL_ADDRESS, 
+    HOSPITAL_EMAIL, 
+    HOSPITAL_NAME, 
+    HOSPITAL_PHONE     
+} from "../../config/Constants";
+
 function Footer() {
     return (
-        <div className="footer">
 
-            <div className="footer-content">
+        <footer className="footer">
 
-                <h4>Eye Hospital</h4>
+            <Container fluid="lg">
 
-                <p>
-                    Providing advanced eye care with modern technology and
-                    experienced specialists.
-                </p>
+                <Row className="footer-content">
 
-                <p>Phone: +977-9800000000</p>
-                <p>Email: info@eyehospital.com</p>
+                    {/* Column 1 */}
+                    <Col lg={4} md={6} sm={12} className="footer-column">
 
-            </div>
+                        <h4>Eye Hospital</h4>
 
-            <div className="footer-bottom">
-                © 2026 Eye Hospital. All rights reserved.
-            </div>
+                        <p>
+                            Providing advanced eye care with modern technology
+                            and experienced specialists.
+                        </p>
 
-        </div>
+                        <p><strong>Phone:</strong> {HOSPITAL_PHONE}</p>
+                        <p><strong>Email:</strong> {HOSPITAL_EMAIL}</p>
+                        <p><strong>Address:</strong> {HOSPITAL_ADDRESS}</p>
+
+                    </Col>
+
+
+                    {/* Column 2 */}
+                    <Col lg={4} md={6} sm={12} className="footer-column">
+
+                        <h5>Quick Links</h5>
+
+                        <ul className="footer-links">
+
+                            <li><Link to="/career">Career</Link></li>
+                            <li><Link to="/contact">Contact Us</Link></li>
+                            <li><Link to="/faq">FAQs</Link></li>
+
+                        </ul>
+
+                    </Col>
+
+
+                    {/* Column 3 */}
+                    <Col lg={4} md={12} sm={12} className="footer-column">
+
+                        <h5>Opening Hours</h5>
+
+                        <p>Sunday – Friday: 9:00 AM – 6:00 PM</p>
+                        <p>Saturday: Emergency Only</p>
+
+                    </Col>
+
+                </Row>
+
+
+                <div className="footer-bottom">
+
+                    <p>
+                        © {CURRENT_YEAR} {HOSPITAL_NAME}
+                    </p>
+
+                    <p>All rights reserved.</p>
+
+                </div>
+
+            </Container>
+
+        </footer>
+
     );
 }
 

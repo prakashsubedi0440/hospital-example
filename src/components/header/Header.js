@@ -5,7 +5,7 @@ function Header() {
     return (
         <Navbar expand="lg" collapseOnSelect className="navbar">
 
-            <Container>
+            <Container fluid="lg">
 
                 {/* Logo + Hospital Name */}
                 <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
