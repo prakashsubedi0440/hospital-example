@@ -52,6 +52,14 @@ function Home() {
         </p>
 
         <MapLocation />
+        {/* <a
+            href="https://maps.google.com/?q=Mechi+Advance+Eye+Hospital"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary mt-3"
+            >
+            Get Directions
+        </a> */}
       </div>
     </div>
   );
