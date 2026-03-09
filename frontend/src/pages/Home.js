@@ -19,7 +19,22 @@ function Home() {
           vitae sem sed sapien interdum viverra. Donec luctus, velit sed gravida
           bibendum, sapien justo tincidunt turpis, sit amet dignissim libero
           ligula nec lectus.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          vitae sem sed sapien interdum viverra. Donec luctus, velit sed gravida
+          bibendum, sapien justo tincidunt turpis, sit amet dignissim libero
+          ligula nec lectus.
         </p>
+         <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          vitae sem sed sapien interdum viverra. Donec luctus, velit sed gravida
+          bibendum, sapien justo tincidunt turpis, sit amet dignissim libero
+          ligula nec lectus.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+          vitae sem sed sapien interdum viverra. Donec luctus, velit sed gravida
+          bibendum, sapien justo tincidunt turpis, sit amet dignissim libero
+          ligula nec lectus.
+        </p>
+
 
         <p>
           Nulla facilisi. Suspendisse potenti. Quisque a purus vitae lorem
