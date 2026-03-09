@@ -1,41 +1,35 @@
-import React from 'react';
-
-const notices = [
-    {
-        id: 1,
-        title: 'COVID-19 Vaccination Drive',
-        date: '2024-06-10',
-        description: 'Free COVID-19 vaccination available for all age groups. Visit our hospital between 9 AM to 5 PM.'
-    },
-    {
-        id: 2,
-        title: 'Blood Donation Camp',
-        date: '2024-06-15',
-        description: 'Join our blood donation camp and help save lives. Register at the reception.'
-    },
-    {
-        id: 3,
-        title: 'Health Checkup Packages',
-        date: '2024-06-20',
-        description: 'Avail special discounts on health checkup packages throughout June.'
-    }
-];
+import { useEffect, useState } from "react";
 
 function Notice() {
-    return (
-        <div style={{ padding: '2rem' }}>
-            <h1>Hospital Notices</h1>
-            <ul style={{ listStyle: 'none', padding: 0 }}>
-                {notices.map(notice => (
-                    <li key={notice.id} style={{ marginBottom: '2rem', borderBottom: '1px solid #ccc', paddingBottom: '1rem' }}>
-                        <h2>{notice.title}</h2>
-                        <p><strong>Date:</strong> {notice.date}</p>
-                        <p>{notice.description}</p>
-                    </li>
-                ))}
-            </ul>
+
+  const [notices, setNotices] = useState([]);
+
+  useEffect(() => {
+    //fetch("http://localhost:5000/api/notices")
+    fetch(`${process.env.REACT_APP_API_URL}/api/notices`)
+      .then(res => res.json())
+      .then(data => setNotices(data));
+  }, []);
+
+  return (
+
+    <div>
+
+      <h2>Notices</h2>
+
+      {notices.map(notice => (
+        <div key={notice.id}>
+
+          <h4>{notice.title}</h4>
+          <p>{notice.date}</p>
+          <p>{notice.message}</p>
+
         </div>
-    );
+      ))}
+
+    </div>
+
+  );
 }
 
 export default Notice;
