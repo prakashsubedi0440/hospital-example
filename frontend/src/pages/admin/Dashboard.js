@@ -1,10 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "./Dashboard.css";
 
+const cards = [
+  { to: "/admin/notices", label: "Notices",  desc: "Add or remove hospital notices",    icon: "&#128276;", className: "notices-icon" },
+  { to: "/admin/gallery", label: "Gallery",  desc: "Manage hospital photo gallery",     icon: "&#128247;", className: "gallery-icon" },
+  { to: "/admin/doctors", label: "Doctors",  desc: "Update doctor profiles and info",   icon: "&#128105;", className: "doctors-icon" },
+  { to: "/admin/events",  label: "Events",   desc: "Post upcoming hospital events",     icon: "&#128197;", className: "events-icon"  },
+];
+
 function Dashboard() {
   const { token } = useAuth();
+  const navigate = useNavigate();
 
-  // Decode email from JWT payload (without a library)
   const email = token
     ? JSON.parse(atob(token.split(".")[1])).email
     : "";
@@ -17,34 +25,18 @@ function Dashboard() {
       </div>
 
       <div className="dashboard-cards">
-        <div className="dash-card">
-          <div className="dash-card-icon notices-icon">&#128276;</div>
-          <div>
-            <h4>Notices</h4>
-            <p>Add or remove hospital notices</p>
+        {cards.map((card) => (
+          <div className="dash-card" key={card.to} onClick={() => navigate(card.to)}>
+            <div
+              className={`dash-card-icon ${card.className}`}
+              dangerouslySetInnerHTML={{ __html: card.icon }}
+            />
+            <div>
+              <h4>{card.label}</h4>
+              <p>{card.desc}</p>
+            </div>
           </div>
-        </div>
-        <div className="dash-card">
-          <div className="dash-card-icon gallery-icon">&#128247;</div>
-          <div>
-            <h4>Gallery</h4>
-            <p>Manage hospital photo gallery</p>
-          </div>
-        </div>
-        <div className="dash-card">
-          <div className="dash-card-icon doctors-icon">&#128105;</div>
-          <div>
-            <h4>Doctors</h4>
-            <p>Update doctor profiles and info</p>
-          </div>
-        </div>
-        <div className="dash-card">
-          <div className="dash-card-icon events-icon">&#128197;</div>
-          <div>
-            <h4>Events</h4>
-            <p>Post upcoming hospital events</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

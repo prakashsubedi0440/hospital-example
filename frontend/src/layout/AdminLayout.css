@@ -4,6 +4,12 @@
   font-family: "Segoe UI", Arial, sans-serif;
 }
 
+/* ===== OVERLAY (mobile) ===== */
+
+.admin-overlay {
+  display: none;
+}
+
 /* ===== SIDEBAR ===== */
 
 .admin-sidebar {
@@ -12,8 +18,8 @@
   color: white;
   display: flex;
   flex-direction: column;
-  padding: 0;
   flex-shrink: 0;
+  z-index: 200;
 }
 
 .admin-sidebar-brand {
@@ -99,29 +105,87 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-}
-
-.admin-topbar {
-  background: white;
-  padding: 16px 28px;
-  border-bottom: 1px solid #e0e4ef;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.admin-topbar h3 {
-  margin: 0;
-  font-size: 18px;
-  color: #2D3290;
-}
-
-.admin-topbar-user {
-  font-size: 13px;
-  color: #666;
+  min-width: 0;
 }
 
 .admin-content {
   padding: 28px;
   flex: 1;
+}
+
+/* ===== MOBILE TOPBAR ===== */
+
+.admin-mobile-topbar {
+  display: none;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+
+  /* Sidebar hidden off-screen by default */
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translateX(-100%);
+    transition: transform 0.28s ease;
+  }
+
+  /* Slide in when open */
+  .admin-sidebar--open {
+    transform: translateX(0);
+  }
+
+  /* Dark overlay behind open sidebar */
+  .admin-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 199;
+  }
+
+  /* Mobile topbar */
+  .admin-mobile-topbar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #1f255f;
+    padding: 14px 18px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .admin-mobile-title {
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .admin-content {
+    padding: 20px 16px;
+  }
+}
+
+/* ===== HAMBURGER BUTTON ===== */
+
+.admin-hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+
+.admin-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
 }

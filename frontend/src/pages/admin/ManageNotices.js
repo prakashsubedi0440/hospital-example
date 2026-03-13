@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
@@ -8,21 +9,21 @@ const API = process.env.REACT_APP_API_URL;
 
 function ManageNotices() {
   const { token } = useAuth();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [formError, setFormError] = useState("");
+  const [selectedId, setSelectedId] = useState(null);
 
   const authHeader = { headers: { Authorization: `Bearer ${token}` } };
 
-  // Fetch notices
   const { data: notices = [], isLoading } = useQuery({
     queryKey: ["notices"],
     queryFn: () => axios.get(`${API}/api/notices`).then(res => res.data),
   });
 
-  // Add notice
   const addMutation = useMutation({
     mutationFn: (data) => axios.post(`${API}/api/notices`, data, authHeader),
     onSuccess: () => {
@@ -36,10 +37,12 @@ function ManageNotices() {
     },
   });
 
-  // Delete notice
   const deleteMutation = useMutation({
     mutationFn: (id) => axios.delete(`${API}/api/notices/${id}`, authHeader),
-    onSuccess: () => queryClient.invalidateQueries(["notices"]),
+    onSuccess: (_, id) => {
+      queryClient.invalidateQueries(["notices"]);
+      if (selectedId === id) setSelectedId(null);
+    },
   });
 
   const handleSubmit = (e) => {
@@ -51,9 +54,23 @@ function ManageNotices() {
     addMutation.mutate({ title, content });
   };
 
+  const selectedNotice = notices.find(n => n._id === selectedId);
+
+  const formatDate = (date) =>
+    new Date(date).toLocaleDateString("en-US", {
+      year: "numeric", month: "short", day: "numeric",
+    });
+
   return (
     <div className="manage-notices-page">
-      <h2 className="admin-page-title">Manage Notices</h2>
+
+      {/* Header */}
+      <div className="admin-page-header">
+        <button className="admin-back-btn" onClick={() => navigate("/admin/dashboard")}>
+          &#8592; Back
+        </button>
+        <h2 className="admin-page-title">Manage Notices</h2>
+      </div>
 
       {/* Add Notice Form */}
       <div className="admin-card">
@@ -88,7 +105,7 @@ function ManageNotices() {
         </form>
       </div>
 
-      {/* Notices List */}
+      {/* Notices two-panel */}
       <div className="admin-card">
         <h4>All Notices</h4>
         {isLoading ? (
@@ -96,30 +113,50 @@ function ManageNotices() {
         ) : notices.length === 0 ? (
           <p className="admin-empty">No notices yet.</p>
         ) : (
-          <ul className="admin-notice-list">
-            {notices.map((notice) => (
-              <li key={notice._id} className="admin-notice-item">
-                <div className="admin-notice-info">
-                  <strong>{notice.title}</strong>
-                  <span className="admin-notice-date">
-                    {new Date(notice.date).toLocaleDateString("en-US", {
-                      year: "numeric", month: "short", day: "numeric",
-                    })}
-                  </span>
-                  <p>{notice.content}</p>
-                </div>
-                <button
-                  className="admin-btn-delete"
-                  onClick={() => deleteMutation.mutate(notice._id)}
-                  disabled={deleteMutation.isPending}
+          <div className="notices-panel">
+
+            {/* Left: list */}
+            <ul className="notices-panel-list">
+              {notices.map((notice) => (
+                <li
+                  key={notice._id}
+                  className={`notices-panel-item ${selectedId === notice._id ? "notices-panel-item--active" : ""}`}
+                  onClick={() => setSelectedId(notice._id)}
                 >
-                  Delete
-                </button>
-              </li>
-            ))}
-          </ul>
+                  <strong>{notice.title}</strong>
+                  <span>{formatDate(notice.date)}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Right: detail */}
+            <div className="notices-panel-detail">
+              {selectedNotice ? (
+                <>
+                  <div className="notices-detail-header">
+                    <div>
+                      <h3>{selectedNotice.title}</h3>
+                      <span className="notices-detail-date">{formatDate(selectedNotice.date)}</span>
+                    </div>
+                    <button
+                      className="admin-btn-delete"
+                      onClick={() => deleteMutation.mutate(selectedNotice._id)}
+                      disabled={deleteMutation.isPending}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                  <p className="notices-detail-content">{selectedNotice.content}</p>
+                </>
+              ) : (
+                <p className="notices-detail-placeholder">Select a notice to view details.</p>
+              )}
+            </div>
+
+          </div>
         )}
       </div>
+
     </div>
   );
 }
