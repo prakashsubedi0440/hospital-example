@@ -1,0 +1,127 @@
+.admin-wrapper {
+  display: flex;
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* ===== SIDEBAR ===== */
+
+.admin-sidebar {
+  width: 240px;
+  background-color: #1f255f;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.admin-sidebar-brand {
+  padding: 24px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-sidebar-brand h2 {
+  color: white;
+  font-size: 16px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.admin-sidebar-brand span {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.admin-nav {
+  flex: 1;
+  padding: 16px 0;
+}
+
+.admin-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.admin-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: white;
+  border-left-color: #006838;
+}
+
+.admin-nav a.active {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: white;
+  border-left-color: #006838;
+}
+
+.admin-nav-icon {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+.admin-sidebar-footer {
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-logout-btn {
+  width: 100%;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.admin-logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* ===== MAIN CONTENT ===== */
+
+.admin-main {
+  flex: 1;
+  background-color: #f4f6fb;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.admin-topbar {
+  background: white;
+  padding: 16px 28px;
+  border-bottom: 1px solid #e0e4ef;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-topbar h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #2D3290;
+}
+
+.admin-topbar-user {
+  font-size: 13px;
+  color: #666;
+}
+
+.admin-content {
+  padding: 28px;
+  flex: 1;
+}

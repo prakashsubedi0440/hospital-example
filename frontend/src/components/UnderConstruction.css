@@ -1,0 +1,24 @@
+.under-construction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.uc-icon {
+  font-size: 56px;
+  margin-bottom: 20px;
+}
+
+.under-construction h2 {
+  font-size: 24px;
+  color: #2D3290;
+  margin-bottom: 10px;
+}
+
+.under-construction p {
+  font-size: 15px;
+  color: #666;
+}

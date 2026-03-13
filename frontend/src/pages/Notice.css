@@ -1,0 +1,108 @@
+.notice-page {
+  padding-bottom: 60px;
+}
+
+.notice-hero {
+  background: linear-gradient(rgba(45, 50, 144, 0.88), rgba(0, 104, 56, 0.88));
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.notice-hero h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.notice-hero p {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.notice-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.notice-card {
+  background: #fff;
+  border-left: 5px solid #2D3290;
+  border-radius: 8px;
+  padding: 18px 24px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  user-select: none;
+}
+
+.notice-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.notice-card--open {
+  border-left-color: #006838;
+}
+
+.notice-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.notice-card h3 {
+  font-size: 16px;
+  color: #2D3290;
+  margin: 0;
+}
+
+.notice-card-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.notice-date {
+  font-size: 12px;
+  color: #fff;
+  background-color: #006838;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.notice-chevron {
+  font-size: 11px;
+  color: #2D3290;
+}
+
+.notice-content {
+  color: #444;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 14px 0 0 0;
+  padding-top: 12px;
+  border-top: 1px solid #edf0f7;
+}
+
+.notice-empty {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+  padding: 40px 0;
+}
+
+.notice-status {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 16px;
+  color: #555;
+}
+
+.notice-status.error {
+  color: #c0392b;
+}
